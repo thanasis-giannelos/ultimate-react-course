@@ -4,6 +4,8 @@
 //     str
 //   );
 
+import { Form } from "react-router-dom";
+
 // const fakeCart = [
 //   {
 //     pizzaId: 12,
@@ -14,7 +16,7 @@
 //   },
 //   {
 //     pizzaId: 6,
-//     name: "Vegetale",
+//     name: "Vegetable",
 //     quantity: 1,
 //     unitPrice: 13,
 //     totalPrice: 13,
@@ -36,7 +38,7 @@ function CreateOrder() {
     <div>
       <h2>Ready to order? Lets go!</h2>
 
-      <form>
+      <Form method="POST">
         <div>
           <label>First Name</label>
           <input type="text" name="customer" required />
@@ -68,11 +70,18 @@ function CreateOrder() {
         </div>
 
         <div>
-          <button>Order now</button>
+          <button type="submit">Order now</button>
         </div>
-      </form>
+      </Form>
     </div>
   );
+}
+
+export async function createOrderAction({ request }) {
+  const formData = await request.formData();
+  console.log(formData.get("phone"));
+
+  return null;
 }
 
 export default CreateOrder;
