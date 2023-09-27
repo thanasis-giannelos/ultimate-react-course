@@ -1,8 +1,13 @@
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
+import { addItem } from '../cart/cartSlice';
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+
+  function handleAddToCart() {
+    addItem(pizza);
+  }
 
   return (
     <li className="flex gap-4 py-2">
@@ -19,13 +24,14 @@ function MenuItem({ pizza }) {
         <div className="mt-auto flex items-center justify-between">
           {!soldOut ? (
             <p className="text-sm">{formatCurrency(unitPrice)}</p>
+            <Button type="small" onClick={handleAddToCart}>Add to cart</Button>
+
           ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
               Sold out
             </p>
           )}
 
-          <Button type="small">Add to cart</Button>
         </div>
       </div>
     </li>

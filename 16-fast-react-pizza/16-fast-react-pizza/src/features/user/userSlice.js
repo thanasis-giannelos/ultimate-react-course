@@ -23,7 +23,7 @@ import { createSlice } from "@reduxjs/toolkit";
 // }
 
 const initialState = {
-  username: "kappas",
+  username: "",
 };
 
 const userSlice = createSlice({
@@ -31,7 +31,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateName(state, action) {
-      return (state.username = action.payload);
+      state.username = action.payload;
     },
   },
 });
